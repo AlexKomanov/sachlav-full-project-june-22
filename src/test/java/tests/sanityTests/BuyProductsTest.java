@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.ProductsPage;
+import pages.YourCartPage;
 import tests.BaseTest;
 
 public class BuyProductsTest extends BaseTest {
@@ -15,6 +16,7 @@ public class BuyProductsTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
         ProductsPage productsPage = new ProductsPage(driver);
+        YourCartPage yourCartPage = new YourCartPage(driver);
 
         loginPage.loginToApp(Credentials.STANDARD_USER, Credentials.SECRET_SAUCE_PASSWORD);
 
@@ -23,8 +25,14 @@ public class BuyProductsTest extends BaseTest {
 
 
         productsPage.chooseProductFromList("Sauce Labs Backpack");
+        Assert.assertEquals(productsPage.getItemsCounter(), 1);
         productsPage.chooseProductFromList("Sauce Labs Fleece Jacket");
+        Assert.assertEquals(productsPage.getItemsCounter(), 2);
+        productsPage.continueToCheckout();
+
+        Assert.assertEquals(yourCartPage.getTitle(), "YOUR CART");
 
         productsPage.sleep(2000);
+
     }
 }
