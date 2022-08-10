@@ -15,8 +15,10 @@ public class ProductsPage extends BasePage {
     WebElement title;
     @FindAll(@FindBy(css = "[class=\"inventory_item_description\"]"))
     List<WebElement> productDescriptions;
-    @FindBy(css = "[button]")
-    WebElement addToCartButton;
+    @FindBy(css = "[class=\"shopping_cart_badge\"]")
+    WebElement shoppingCartBadge;
+    @FindBy(css = "[class=\"shopping_cart_link\"]")
+    WebElement shoppingCartIcon;
 
 
     public ProductsPage(WebDriver driver) {
@@ -40,5 +42,13 @@ public class ProductsPage extends BasePage {
                 productDescription.findElement(By.cssSelector("button")).click();
             }
         }
+    }
+
+    public int getItemsCounter() {
+        return Integer.parseInt(getElementText(shoppingCartBadge));
+    }
+
+    public void continueToCheckout() {
+        clickElement(shoppingCartIcon);
     }
 }
