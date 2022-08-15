@@ -4,23 +4,24 @@ package tests.sanityTests;
 import helpers.Credentials;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.CheckoutYourInformationPage;
-import pages.LoginPage;
-import pages.ProductsPage;
-import pages.YourCartPage;
+import pages.*;
 import tests.BaseTest;
 
 public class BuyProductsTest extends BaseTest {
 
     String firstName = "Alex";
+    String lastname = "Komanov";
 
     @Test(testName = "Buy products sanity test")
     public void sanity_test_01() {
+
 
         LoginPage loginPage = new LoginPage(driver);
         ProductsPage productsPage = new ProductsPage(driver);
         YourCartPage yourCartPage = new YourCartPage(driver);
         CheckoutYourInformationPage checkoutYourInformationPage = new CheckoutYourInformationPage(driver);
+        CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        CheckoutComplete checkoutComplete = new CheckoutComplete(driver);
 
         loginPage.loginToApp(Credentials.STANDARD_USER, Credentials.SECRET_SAUCE_PASSWORD);
 
@@ -38,10 +39,17 @@ public class BuyProductsTest extends BaseTest {
         yourCartPage.goToCheckout();
 
         Assert.assertEquals(checkoutYourInformationPage.getTitle(), "CHECKOUT: YOUR INFORMATION");
-        checkoutYourInformationPage.fillCheckoutForm(firstName, "Komanov", "20100");
+        checkoutYourInformationPage.fillCheckoutForm(firstName, lastname, "20100");
         checkoutYourInformationPage.continueWithCheckout();
 
+        Assert.assertEquals(checkoutOverviewPage.getTitle(), "CHECKOUT: OVERVIEW");
+        checkoutOverviewPage.finishCheckout();
+
+        Assert.assertEquals(checkoutComplete.getTitle(), "CHECKOUT: COMPLETE!");
+        Assert.assertEquals(checkoutComplete.getHeaderCompleteText(), "THANK YOU FOR YOUR ORDER");
+
         productsPage.sleep(2000);
+
 
     }
 }
