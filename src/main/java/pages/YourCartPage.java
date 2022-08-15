@@ -8,6 +8,8 @@ public class YourCartPage extends BasePage {
 
     @FindBy(className = "title")
     WebElement title;
+    @FindBy(css = "[id=\"checkout\"]")
+    WebElement checkoutButton;
 
     public YourCartPage(WebDriver driver) {
         super(driver);
@@ -15,5 +17,9 @@ public class YourCartPage extends BasePage {
 
     public String getTitle() {
         return getElementText(title);
+    }
+
+    public void goToCheckout() {
+        clickElement(checkoutButton);
     }
 }
