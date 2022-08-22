@@ -21,7 +21,11 @@
 
     <test name="Failed Test">
         <classes>
-            <class name="tests.logintests.failedTests.FailedTests" />
+            <class name="tests.logintests.failedTests.FailedTests" >
+                <methods>
+                    <include name="failedTest_01"/>
+                </methods>
+            </class>
         </classes>
     </test> <!-- Sanity -->
 </suite> <!-- Default Suite -->
