@@ -3,7 +3,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master", "ak-success-login-tests" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
     
@@ -28,10 +28,3 @@ jobs:
     
     - name: Test with Maven 
       run: mvn clean test
-
-    - name: Test Reporter
-      uses: dorny/test-reporter@v1.5.0
-      with:
-          name: Report
-          path: target/surefire-reports/junitreports/TEST-tests.*.xml
-          reporter: java-junit
