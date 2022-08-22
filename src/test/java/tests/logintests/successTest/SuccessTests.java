@@ -39,6 +39,6 @@ public class SuccessTests extends BaseTest {
         loginPage.loginToApp(Credentials.PROBLEM_USER, Credentials.SECRET_SAUCE_PASSWORD);
 
         String productsPageTitle = productsPage.getTitle();
-        Assert.assertEquals(productsPageTitle, "PRODUCTS23423423423");
+        Assert.assertEquals(productsPageTitle, "PRODUCTS");
     }
 }
