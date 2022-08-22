@@ -17,6 +17,14 @@ public class FailedTests extends BaseTest {
 
         Assert.assertEquals(loginPage.getErrorMessage(), "Epic sadface: Sorry, this user has been locked out.");
     }
+    @Test
+    public void failedTest_02() {
+        LoginPage loginPage = new LoginPage(driver);
 
+        loginPage.loginToApp("", "");
+
+        Assert.assertEquals(loginPage.getErrorMessage(), "Epic sadface: Username is required");
+    }
 
 }
+//Epic sadface: Username is required

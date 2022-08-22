@@ -22,7 +22,7 @@ public abstract class BaseTest {
     @BeforeMethod
     public void init(){
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        //options.addArguments("--headless");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         webDriverWait = new WebDriverWait(driver, 30);
