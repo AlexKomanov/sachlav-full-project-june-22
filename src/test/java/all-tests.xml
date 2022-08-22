@@ -12,6 +12,8 @@
             <class name="tests.logintests.successTest.SuccessTests">
                 <methods>
                     <include name="successTest_01"/>
+                    <include name="successTest_02"/>
+                    <include name="successTest_03"/>
                 </methods>
             </class>
         </classes>
