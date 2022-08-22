@@ -19,4 +19,15 @@ public class SuccessTests extends BaseTest {
         String productsPageTitle = productsPage.getTitle();
         Assert.assertEquals(productsPageTitle, "PRODUCTS");
     }
+
+    @Test
+    public void successTest_02() {
+        LoginPage loginPage = new LoginPage(driver);
+        ProductsPage productsPage = new ProductsPage(driver);
+
+        loginPage.loginToApp(Credentials.PERFORMANCE_GLITCH_USER, Credentials.SECRET_SAUCE_PASSWORD);
+
+        String productsPageTitle = productsPage.getTitle();
+        Assert.assertEquals(productsPageTitle, "PRODUCTS");
+    }
 }
